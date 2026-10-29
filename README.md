@@ -64,7 +64,8 @@ volta/                  Python package
 Models/                 URDF / xacro, meshes and floor SDFs
 Simulation/             notebooks (main: VoltaSimulation_lean.ipynb), see Simulation/README.md
 Visualization/          model viewer notebooks and LIP phase portrait
-Result/                 saved logs, figures and Meshcat recordings, videos and papers
+Result/                 figures, videos and papers; logs (Final/Data) and Meshcat
+                        recordings (Final/Record) are written here but not tracked in git
 ```
 
 ## Installation

@@ -106,7 +106,8 @@ With `save_graph = True`:
 
 Two cells write files whatever `save_graph` is set to:
 `Result/Final/Data/Fz_with_ref.npz` (Fz comparison cell) and `Simulation/sigma_plot.png`
-(the **Backyard** section). Running them changes tracked files.
+(the **Backyard** section). `sigma_plot.png` is tracked, so running that cell changes it.
+`Result/Final/Data/` and `Result/Final/Record/` are in `.gitignore`.
 
 ## Troubleshooting
 
