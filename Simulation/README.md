@@ -101,11 +101,11 @@ After the run, the first **Plot** cell turns the loggers into arrays shaped `(di
 
 With `save_graph = True`:
 
-- logs → `M_result/Final/Data/<exp id>[_noise].npz`
-- figures → `M_result/Final/Pics/<exp_name>[_noise]/`
+- logs → `Result/Final/Data/<exp id>[_noise].npz`
+- figures → `Result/Final/Pics/<exp_name>[_noise]/`
 
 Two cells write files whatever `save_graph` is set to:
-`M_result/Final/Data/Fz_with_ref.npz` (Fz comparison cell) and `Simulation/sigma_plot.png`
+`Result/Final/Data/Fz_with_ref.npz` (Fz comparison cell) and `Simulation/sigma_plot.png`
 (the **Backyard** section). Running them changes tracked files.
 
 ## Troubleshooting

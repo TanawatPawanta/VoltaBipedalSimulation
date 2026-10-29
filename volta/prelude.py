@@ -42,7 +42,7 @@ from pydrake.visualization import (
     VisualizationConfig,
 )
 
-from volta.paths import MODELS_DIR, PROJECT_ROOT, RESULTS_DATA_DIR, RESULTS_PICS_DIR
+from volta.paths import MODELS_DIR, PROJECT_ROOT, RESULT_ROOT, RESULTS_DATA_DIR, RESULTS_PICS_DIR
 
 # Drake LeafSystems
 from volta.Leaf_systems.ContactForceSensor import ContactForceSensor

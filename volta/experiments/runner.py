@@ -481,8 +481,8 @@ def run_experiment(experiment_name: str = "1a", save_graph: bool = False, show_p
                    realtime_rate: float = 0.15):
     """Run one experiment from `configs.py` end to end.
 
-    With save_graph=True the logs go to M_result/Final/Data/<exp>[_noise].npz and the
-    figures to M_result/Final/Pics/<exp_name>[_noise]/. Returns a colored SUCCEEDED/FAILED string.
+    With save_graph=True the logs go to Result/Final/Data/<exp>[_noise].npz and the
+    figures to Result/Final/Pics/<exp_name>[_noise]/. Returns a colored SUCCEEDED/FAILED string.
     """
     print(f"Running experiment: {experiment_name}")
     meshcat = StartMeshcat()

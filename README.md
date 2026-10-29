@@ -4,17 +4,50 @@ Walking simulation and whole-body control for the Volta biped, built on [Drake](
 
 ## Overview
 
-The closed loop runs in Drake with compliant point contact:
+A torque-controlled locomotion framework for the VOLTA humanoid that couples an IS-MPC gait
+planner with a passivity-based whole-body controller. The closed loop runs in Drake with
+compliant point contact:
 
-- **Gait planner**: an intrinsically stable MPC (IS-MPC) on the linear inverted pendulum (LIP) that
-  plans footsteps, CoM and ZMP from a velocity command (solved with CasADi + OSQP every 10 ms).
-- **State estimator**: a Kalman filter on the LIP model that fuses the measured CoM and ZMP.
-- **Whole-body controller**: a passivity-based WBC that tracks the CoM and swing-foot references,
-  distributes contact wrenches between the feet and outputs joint torques.
-- **Experiments**: walking patterns, soft and mixed floors, low contact dissipation, joint damping,
-  walking speed and external pushes, each with optional sensor noise.
+![System overview](Result/Media/SystemOverview.png)
 
-Robot models: Volta rev5 (used by the experiments), Volta rev4, and `hanuman04` (an older ROS 2 package).
+- **Gait planner (100 Hz)**: a footstep planner and an intrinsically stable MPC (IS-MPC) on the
+  linear inverted pendulum (LIP). From an omnidirectional velocity command `V* = [vx, vy, ωz]` it
+  plans the CoM and ZMP (solved with CasADi + OSQP) and the swing-foot trajectories.
+- **Gait regulator (1 kHz)**: a passivity-based WBC. CoM and swing-leg impedance controllers,
+  a CoM-based feedforward force and a stance-leg stabilizer feed a QP that distributes the contact
+  wrenches between the feet. The wrenches are then mapped to joint torques.
+- **State estimator (100 Hz / 1 kHz)**: forward kinematics plus a Kalman filter on the LIP model that
+  fuses the measured CoM and the ZMP computed from the foot contact forces.
+- **Plant (10 kHz)**: Drake `MultibodyPlant` with a 0.1 ms time step.
+
+## Robot
+
+![VOLTA joint configuration](Result/Media/JointConfigulation.png)
+
+VOLTA is a custom-built biped with 12 torque-controlled joints, 6 per leg:
+
+| Joint | Axis |
+|---|---|
+| `J_hip_y` | hip yaw |
+| `J_hip_r` | hip roll |
+| `J_hip_p` | hip pitch |
+| `J_knee` | knee pitch |
+| `J_ankle_p` | ankle pitch |
+| `J_ankle_r` | ankle roll |
+
+In the URDF the joints are prefixed `JL_` / `JR_` for the left and right leg.
+
+| Property (simulation model, rev5) | Value |
+|---|---|
+| Total mass | 7.12 kg |
+| Degrees of freedom | 6 (floating base) + 12 (joints) |
+| Joint torque | 12 Nm limit (`joint_torque_limit` in `ExperimentConfig`), 4 Nm rated |
+| Foot contact | 4 contact points per foot (corners of the sole) |
+| LIP CoM height | 0.35 m |
+| ZMP support box | 0.08 m square (`foot_size`) |
+
+Models in `Models/`: Volta rev5 (used by the experiments), Volta rev4, and `hanuman04` (an older
+ROS 2 package).
 
 ## Repository layout
 
@@ -31,7 +64,7 @@ volta/                  Python package
 Models/                 URDF / xacro, meshes and floor SDFs
 Simulation/             notebooks (main: VoltaSimulation_lean.ipynb), see Simulation/README.md
 Visualization/          model viewer notebooks and LIP phase portrait
-M_result/               saved logs, figures and Meshcat recordings (Final/ and Progress/)
+Result/                 saved logs, figures and Meshcat recordings, videos and papers
 ```
 
 ## Installation
@@ -91,35 +124,46 @@ Defaults: floor stiffness 5e6 N/m, dissipation 50 s/m, joint damping 0.3, walkin
 
 ## Results
 
-With `save_graph=True`, each run writes:
+GIFs are in `Result/Media/` (downscaled to 480 px at 10 fps; the hardware clips are 400 px at 8 fps).
 
-- **Logs** to `M_result/Final/Data/<exp id>[_noise].npz`: timestamps, desired / raw / filtered /
-  ground-truth CoM, desired and actual feet, desired / raw / filtered ZMP, walking phase, ground
-  reaction forces, joint torque commands and desired foot wrenches.
-- **Figures** to `M_result/Final/Pics/<exp_name>[_noise]/`.
+### Simulation
 
-The figures for each experiment:
+**Combined walk**: Omnidirectional walk combining forward, lateral and turning commands on a rigid floor (exp `1f`).
 
-| Group | Figures |
-|---|---|
-| State estimation | filtered vs raw vs ground-truth CoM position; same for CoM velocity; filtered vs raw ZMP |
-| CoM | CoM orientation tracking; CoM position tracking (with error); planned CoM acceleration |
-| Velocity command | reference velocity (Vx, Vy, ω) vs CoM velocity |
-| Feet | left / right foot orientation tracking; left / right foot position tracking (with error) |
-| ZMP | planned ZMP-CoM; ZMP tracking (desired vs actual); actual ZMP-CoM |
-| Top view on footstep plan | tracking performance (all four trajectories); actual CoM and desired ZMP; ZMP tracking performance; planned CoM and ZMP |
+![Combined walk](Result/Media/Combined_walk_in_sim.gif)
 
-Time-series plots shade the walking phase (left stance, right stance, double support).
+**Self rotation**: Turning in place (exp `1d`).
 
-Other result folders:
+![Self rotation](Result/Media/Self_rotation_in_sim.gif)
 
-- `M_result/Final/Record/`: Meshcat recordings of the runs as standalone `.html` files; open one in a browser to replay the 3D animation.
-- `M_result/Final/Script/plot.ipynb`: plots across experiments built from the saved `.npz` logs.
-- `M_result/Progress/`: figures from earlier development stages (stabilizing controller, orientation
-  controller, solver tests, static walking).
+**Walk on compliant floor**: Walking on a soft floor (exp `2`).
+
+![Walk on compliant floor](Result/Media/Walk_on_compliance_floor_sim.gif)
+
+**Mixed-compliance floor**: Straight walk over tiles of different stiffness and damping (exp `4a`).
+
+![Mixed-compliance floor](Result/Media/MixedComplianceFloor.gif)
+
+**Step floor**: Straight walk over stiff tiles at different heights (exp `4b`).
+
+![Step floor](Result/Media/StepFloor.gif)
+
+### Hardware
+
+The hardware tests so far run only the whole-body controller (WBC) on the VOLTA prototype, without the gait planner. The clips are cropped to the camera view.
+
+**CoM stabilization**: The robot is told to hold its current pose while it is pushed and pulled by hand. It corrects the pose error and returns to the original pose.
+
+![CoM stabilization](Result/Media/Hardware/phyCoMStabilization.gif)
+
+**CoM tracking**: The robot is given a target CoM pose and follows a CoM trajectory generated with a cubic polynomial.
+
+![CoM tracking](Result/Media/Hardware/phyCoMTracking2.gif)
 
 ## Further documentation
 
-[`Simulation/README.md`](Simulation/README.md) covers the notebook parameters, initial-pose modes,
-the closed-loop diagram with port tables, the logged signals and troubleshooting
-(MPC solver failures, Meshcat wiring, slow runs).
+- [Paper: A Unified Torque-controlled Locomotion Framework for the VOLTA Humanoid Robot via IS-MPC and Passivity-based WBC](Result/Doc/A%20Unified%20Torque-controlled%20Locomotion%20Framework%20for%20the%20VOLTA%20Humanoid%20Robot%20via%20%20IS-MPC%20and%20Passivity-based%20WBC.pdf)
+- [Thesis](Result/Doc/Final_Thesis_Tanawat.pdf)
+- [`Simulation/README.md`](Simulation/README.md) covers the notebook parameters, initial-pose modes,
+  the closed-loop diagram with port tables, the logged signals and troubleshooting
+  (MPC solver failures, Meshcat wiring, slow runs).
