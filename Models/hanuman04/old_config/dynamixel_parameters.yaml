@@ -1,0 +1,48 @@
+dynamixel:
+  usb_port: /dev/ttyUSB0
+  baud_rate: 1000000
+# left leg
+JL_hip_y:
+  dynamixel_ID: 1
+JL_hip_r:
+  dynamixel_ID: 2
+JL_hip_p:
+  dynamixel_ID: 3
+JL_knee:
+  dynamixel_ID: 4
+JL_ankle_p:
+  dynamixel_ID: 5
+JL_ankle_r:
+  dynamixel_ID: 6
+# right lag
+JR_hip_y:
+  dynamixel_ID: 11
+JR_hip_r:
+  dynamixel_ID: 12
+JR_hip_p:
+  dynamixel_ID: 13
+JR_knee:
+  dynamixel_ID: 14
+JR_ankle_p:
+  dynamixel_ID: 15
+JR_ankle_r:
+  dynamixel_ID: 16
+# left arm
+JL_shoulder_p:
+  dynamixel_ID: 21
+JL_shoulder_r:
+  dynamixel_ID: 22
+JL_elbow:
+  dynamixel_ID: 23
+# right arm
+JR_shoulder_p:
+  dynamixel_ID: 31
+JR_shoulder_r:
+  dynamixel_ID: 32
+JR_elbow:
+  dynamixel_ID: 33
+# head
+J_neck:
+  dynamixel_ID: 41
+J_cam:
+  dynamixel_ID: 42

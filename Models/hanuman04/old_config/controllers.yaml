@@ -1,0 +1,75 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+
+    velocity_controller:
+      type: velocity_controllers/JointGroupVelocityController
+
+    joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+velocity_controller:
+  ros__parameters:
+    joints:
+    # Left leg
+      - JL_hip_y
+      - JL_hip_r
+      - JL_hip_p
+      - JL_knee
+      - JL_ankle_p
+      - JL_ankle_r
+    # Right leg
+      - JR_hip_y
+      - JR_hip_r
+      - JR_hip_p
+      - JR_knee
+      - JR_ankle_p
+      - JR_ankle_r
+    # Left arm
+      - JL_shoulder_p
+      - JL_shoulder_r
+      - JL_elbow
+    # Right arm
+      - JR_shoulder_p
+      - JR_shoulder_r
+      - JR_elbow
+    # Head
+      # - J_neck
+      # - J_cam
+
+joint_trajectory_controller:
+  ros__parameters:
+    joints:
+    # Left leg
+      - JL_hip_y
+      - JL_hip_r
+      - JL_hip_p
+      - JL_knee
+      - JL_ankle_p
+      - JL_ankle_r
+    # Right leg
+      - JR_hip_y
+      - JR_hip_r
+      - JR_hip_p
+      - JR_knee
+      - JR_ankle_p
+      - JR_ankle_r
+    # Left arm
+      - JL_shoulder_p
+      - JL_shoulder_r
+      - JL_elbow
+    # Right arm
+      - JR_shoulder_p
+      - JR_shoulder_r
+      - JR_elbow
+    # Head
+      # - J_neck
+      # - J_cam
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position

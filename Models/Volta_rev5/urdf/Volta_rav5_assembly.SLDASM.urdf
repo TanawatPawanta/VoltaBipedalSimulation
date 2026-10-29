@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="Volta_rav5_assembly.SLDASM">
+  <link
+    name="torso">
+    <inertial>
+      <origin
+        xyz="0.0041237 8.055E-06 0.030192"
+        rpy="0 0 0" />
+      <mass
+        value="0.87322" />
+      <inertia
+        ixx="0.0029711"
+        ixy="-6.1922E-08"
+        ixz="-5.8122E-06"
+        iyy="0.0016082"
+        iyz="-5.9905E-09"
+        izz="0.002701" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/torso.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/torso.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="L_hip_connector">
+    <inertial>
+      <origin
+        xyz="0.00010593 0.0079546 0.052571"
+        rpy="0 0 0" />
+      <mass
+        value="0.372" />
+      <inertia
+        ixx="0.00011402"
+        ixy="4.9119E-09"
+        ixz="-6.2942E-07"
+        iyy="0.0001669"
+        iyz="-1.2947E-05"
+        izz="7.8252E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/L_hip_connector.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.9098 0.44314 0.031373 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/L_hip_connector.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JL_hip_p"
+    type="revolute">
+    <origin
+      xyz="0 0.067 0"
+      rpy="1.5708 1.5708 0" />
+    <parent
+      link="torso" />
+    <child
+      link="L_hip_connector" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="L_hip">
+    <inertial>
+      <origin
+        xyz="0.084531 1.0364E-05 0.0052271"
+        rpy="0 0 0" />
+      <mass
+        value="0.38" />
+      <inertia
+        ixx="0.00013738"
+        ixy="-8.2548E-09"
+        ixz="1.9227E-05"
+        iyy="0.00017953"
+        iyz="-5.5353E-09"
+        izz="0.00018391" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/L_hip.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.25098 0.25098 0.25098 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/L_hip.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JL_hip_r"
+    type="revolute">
+    <origin
+      xyz="0 0 0.058"
+      rpy="1.5708 0 0" />
+    <parent
+      link="L_hip_connector" />
+    <child
+      link="L_hip" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="L_thigh">
+    <inertial>
+      <origin
+        xyz="-0.012251 -0.0010477 0.11448"
+        rpy="0 0 0" />
+      <mass
+        value="0.44" />
+      <inertia
+        ixx="0.00094966"
+        ixy="-7.9344E-07"
+        ixz="6.0246E-05"
+        iyy="0.00087557"
+        iyz="1.9501E-05"
+        izz="0.00012152" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/L_thigh.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.9098 0.44314 0.031373 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/L_thigh.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JL_hip_y"
+    type="revolute">
+    <origin
+      xyz="0.124 0 0"
+      rpy="-1.5708 0 -1.5708" />
+    <parent
+      link="L_hip" />
+    <child
+      link="L_thigh" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="L_leg">
+    <inertial>
+      <origin
+        xyz="0.13604 -3.7092E-05 0.02863"
+        rpy="0 0 0" />
+      <mass
+        value="0.462" />
+      <inertia
+        ixx="0.00028553"
+        ixy="1.2607E-06"
+        ixz="-0.000125"
+        iyy="0.0016659"
+        iyz="-2.8824E-07"
+        izz="0.0017159" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/L_leg.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.25098 0.25098 0.25098 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/L_leg.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JL_knee"
+    type="revolute">
+    <origin
+      xyz="0 0 0.17"
+      rpy="0 -1.5708 0" />
+    <parent
+      link="L_thigh" />
+    <child
+      link="L_leg" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="L_ankle">
+    <inertial>
+      <origin
+        xyz="0.028112 0.0037516 0.0013193"
+        rpy="0 0 0" />
+      <mass
+        value="0.521" />
+      <inertia
+        ixx="0.0001855"
+        ixy="-6.3111E-09"
+        ixz="5.5979E-06"
+        iyy="0.0003571"
+        iyz="-8.0381E-10"
+        izz="0.00041903" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/L_ankle.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.9098 0.44314 0.031373 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/L_ankle.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JL_ankle_p"
+    type="revolute">
+    <origin
+      xyz="0.2 0 -0.017"
+      rpy="-3.1416 0 -1.5708" />
+    <parent
+      link="L_leg" />
+    <child
+      link="L_ankle" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="L_foot">
+    <inertial>
+      <origin
+        xyz="0.07325 -3.4565E-08 -0.086848"
+        rpy="0 0 0" />
+      <mass
+        value="0.295" />
+      <inertia
+        ixx="0.0015362"
+        ixy="1.4009E-09"
+        ixz="0.00015597"
+        iyy="0.0014868"
+        iyz="-2.5295E-09"
+        izz="0.00039154" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/L_foot.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.9098 0.44314 0.031373 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/L_foot.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JL_ankle_r"
+    type="revolute">
+    <origin
+      xyz="0.094 0 -0.017"
+      rpy="-1.5708 0 -1.5708" />
+    <parent
+      link="L_ankle" />
+    <child
+      link="L_foot" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="R_hip_connector">
+    <inertial>
+      <origin
+        xyz="0.00010202 -0.0073451 0.052593"
+        rpy="0 0 0" />
+      <mass
+        value="0.372" />
+      <inertia
+        ixx="0.00011402"
+        ixy="-3.2815E-09"
+        ixz="-6.3402E-07"
+        iyy="0.0001669"
+        iyz="1.2938E-05"
+        izz="7.825E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/R_hip_connector.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.25098 0.25098 0.25098 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/R_hip_connector.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JR_hip_p"
+    type="revolute">
+    <origin
+      xyz="0 -0.067 0"
+      rpy="1.5708 1.5708 0" />
+    <parent
+      link="torso" />
+    <child
+      link="R_hip_connector" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="R_hip">
+    <inertial>
+      <origin
+        xyz="0.084531 1.0364E-05 0.0052271"
+        rpy="0 0 0" />
+      <mass
+        value="0.38" />
+      <inertia
+        ixx="0.00013738"
+        ixy="-8.2548E-09"
+        ixz="1.9227E-05"
+        iyy="0.00017953"
+        iyz="-5.5353E-09"
+        izz="0.00018391" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/R_hip.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.25098 0.25098 0.25098 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/R_hip.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JR_hip_r"
+    type="continuous">
+    <origin
+      xyz="0 0 0.058"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="R_hip_connector" />
+    <child
+      link="R_hip" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="R_thigh">
+    <inertial>
+      <origin
+        xyz="0.012274 -0.0010416 0.11448"
+        rpy="0 0 0" />
+      <mass
+        value="0.44" />
+      <inertia
+        ixx="0.00095447"
+        ixy="7.6265E-07"
+        ixz="-6.0349E-05"
+        iyy="0.00087985"
+        iyz="1.9408E-05"
+        izz="0.00012226" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/R_thigh.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.9098 0.44314 0.031373 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/R_thigh.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JR_hip_y"
+    type="revolute">
+    <origin
+      xyz="0.124 0 -0.000998"
+      rpy="-1.5708 0 -1.5708" />
+    <parent
+      link="R_hip" />
+    <child
+      link="R_thigh" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="R_leg">
+    <inertial>
+      <origin
+        xyz="0.13604 -3.7092E-05 0.02863"
+        rpy="0 0 0" />
+      <mass
+        value="0.462" />
+      <inertia
+        ixx="0.00028553"
+        ixy="1.2607E-06"
+        ixz="-0.000125"
+        iyy="0.0016659"
+        iyz="-2.8824E-07"
+        izz="0.0017159" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/R_leg.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.25098 0.25098 0.25098 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/R_leg.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JR_knee"
+    type="revolute">
+    <origin
+      xyz="0 0 0.17"
+      rpy="3.1416 -1.5708 0" />
+    <parent
+      link="R_thigh" />
+    <child
+      link="R_leg" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="R_ankle">
+    <inertial>
+      <origin
+        xyz="0.028112 -0.0037394 0.0013193"
+        rpy="0 0 0" />
+      <mass
+        value="0.521" />
+      <inertia
+        ixx="0.0001855"
+        ixy="-6.3111E-09"
+        ixz="5.5979E-06"
+        iyy="0.0003571"
+        iyz="-8.0381E-10"
+        izz="0.00041903" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/R_ankle.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.9098 0.44314 0.031373 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/R_ankle.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JR_ankle_p"
+    type="revolute">
+    <origin
+      xyz="0.2 0 -0.017"
+      rpy="-3.1416 0 1.5708" />
+    <parent
+      link="R_leg" />
+    <child
+      link="R_ankle" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="R_foot">
+    <inertial>
+      <origin
+        xyz="0.07325 -3.4565E-08 -0.086848"
+        rpy="0 0 0" />
+      <mass
+        value="0.295" />
+      <inertia
+        ixx="0.0015362"
+        ixy="1.4009E-09"
+        ixz="0.00015597"
+        iyy="0.0014868"
+        iyz="-2.5295E-09"
+        izz="0.00039154" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/R_foot.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.9098 0.44314 0.031373 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Volta_rav5_assembly.SLDASM/meshes/R_foot.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="JR_ankle_r"
+    type="revolute">
+    <origin
+      xyz="0.094 0 -0.017"
+      rpy="1.5708 0 1.5708" />
+    <parent
+      link="R_ankle" />
+    <child
+      link="R_foot" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>

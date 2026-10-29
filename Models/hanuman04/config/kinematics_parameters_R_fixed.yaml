@@ -1,0 +1,122 @@
+JL_ankle_r:
+  child: L_foot
+  effort: 10.0
+  lower: -3.14152
+  orientation: -1.5708 0 0
+  parent: L_ankle
+  position: 0 -0.0235 0
+  types: continuous
+  upper: 3.14152
+  velocity: 0.0
+JL_ankle_p:
+  child: L_ankle
+  effort: 10.0
+  lower: -3.14152
+  orientation: 0 0 0
+  parent: L_leg
+  position: 0.166 0 0
+  types: continuous
+  upper: 3.14152
+  velocity: 0.0
+JL_knee:
+  child: L_leg
+  effort: 10.0
+  lower: -3.14152
+  orientation: 0 0 0
+  parent: L_thigh
+  position: 0.1605 0 0
+  types: continuous
+  upper: 3.14152
+  velocity: 0.0
+JL_hip_p:
+  child: L_thigh
+  effort: 10.0
+  lower: -3.14152
+  orientation: -1.5708 0 0
+  parent: L_hip
+  position: 0 0 -0.0235
+  types: continuous
+  upper: 3.14152
+  velocity: 0.0
+JL_hip_r:
+  child: L_hip
+  effort: 10.0
+  lower: -3.14152
+  orientation: 0 -1.5708 0
+  parent: L_hip_connector
+  position: -0.0235 0 0.03
+  types: continuous
+  upper: 3.14152
+  velocity: 0.0
+JL_hip_y:
+  child: L_hip_connector
+  effort: 10.0
+  lower: -3.14152
+  orientation: 0 0 0
+  parent: torso
+  position: 0 -0.108 0
+  types: continuous
+  upper: 3.14152
+  velocity: 0.0
+
+
+JR_hip_y:
+  child: torso
+  parent: R_hip_connector
+  effort: 10.0
+  lower: -3.14152
+  upper: 3.14152
+  velocity: 0.0
+  types: continuous
+  position: -0.03 0 -0.0235
+  orientation: 0 1.5708 0
+JR_hip_r:
+  child: R_hip_connector
+  parent: R_hip
+  effort: 10.0
+  lower: -3.14152
+  upper: 3.14152
+  velocity: 0.0
+  types: continuous
+  position: 0 -0.0235 0.0
+  orientation: 1.5708 0 0
+JR_hip_p:
+  child: R_hip
+  parent: R_thigh
+  effort: 10.0
+  lower: -3.14152
+  upper: 3.14152
+  velocity: 0.0
+  types: continuous
+  position: -0.1605 0 0
+  orientation: 0 0 0
+JR_knee:
+  child: R_thigh
+  parent: R_leg
+  effort: 10.0
+  lower: -3.14152
+  upper: 3.14152
+  velocity: 0.0
+  types: continuous
+  position: -0.166 0 0
+  orientation: 0 0 0
+JR_ankle_p:
+  child: R_leg
+  parent: R_ankle
+  effort: 10.0
+  lower: -3.14152
+  upper: 3.14152
+  velocity: 0.0
+  types: continuous
+  position: 0 0 0.0235
+  orientation: 1.5707963267949 0 0
+JR_ankle_r:
+  child: R_ankle
+  parent: R_foot
+  effort: 10.0
+  lower: -3.14152
+  upper: 3.14152
+  velocity: 0.0
+  types: continuous
+  position: -0.0235 0 0.049
+  orientation: 0 1.5707963267949 0

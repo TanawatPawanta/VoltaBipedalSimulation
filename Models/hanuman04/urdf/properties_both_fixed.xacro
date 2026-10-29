@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="example">
+  <!-- package name -->
+  <xacro:property name="description_package" value="hanuman04"/>
+  <!-- Mathematics Constants -->
+  <xacro:property name="PI" value="3.1415926535897931"/>
+  <!-- files path -->
+  <xacro:property name="kinematics_params_path" value="$(find ${description_package})/config/kinematics_parameters_both_fixed.yaml"/> 
+  <xacro:property name="visual_params_path" value="$(find ${description_package})/config/visual_parameters_both_fixed.yaml"/> 
+  <xacro:property name="dynamics_params_path" value="$(find ${description_package})/config/dynamics_parameters.yaml"/> 
+  <xacro:property name="dynamixel_params_path" value="$(find ${description_package})/config/dynamixel_parameters.yaml"/> 
+  <!-- load parameters -->
+  <xacro:property name="JOINT" value="${xacro.load_yaml(kinematics_params_path)}"/> 
+  <xacro:property name="LINK_VISUAL" value="${xacro.load_yaml(visual_params_path)}"/> 
+  <xacro:property name="LINK_INERTIAL" value="${xacro.load_yaml(dynamics_params_path)}"/> 
+  <xacro:property name="DYNAMIXEL" value="${xacro.load_yaml(dynamixel_params_path)}"/>
+</robot>

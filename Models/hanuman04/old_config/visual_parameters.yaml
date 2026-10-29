@@ -1,0 +1,84 @@
+L_ankle:
+  color: 1 0.949019607843137 0.909803921568627 1
+  orientation: 0 0 0
+  position: 0 0 0
+L_arm_connector:
+  color: 0.866666666666667 0.909803921568627 1 1
+  orientation: 0 0 0
+  position: 0 0 0
+L_foot:
+  color: 0.866666666666667 0.909803921568627 1 1
+  orientation: 0 0 0
+  position: 0 0 0
+L_hip:
+  color: 1 0.949019607843137 0.909803921568627 1
+  orientation: 0 0 0
+  position: 0 0 0
+L_hip_connector:
+  color: 0.866666666666667 0.909803921568627 1 1
+  orientation: 0 0 0
+  position: 0 0 0
+L_leg:
+  color: 0.866666666666667 0.909803921568627 1 1
+  orientation: 0 0 0
+  position: 0 0 0
+L_lower_arm:
+  color: 0.866666666666667 0.909803921568627 1 1
+  orientation: 0 0 0
+  position: 0 0 0
+L_thigh:
+  color: 0.866666666666667 0.909803921568627 1 1
+  orientation: 0 0 0
+  position: 0 0 0
+L_upper_arm:
+  color: 0.250980392156863 0.250980392156863 0.250980392156863 1
+  orientation: 0 0 0
+  position: 0 0 0
+R_ankle:
+  color: 0.86667 0.9098 1 1
+  orientation: 0 0 0
+  position: 0 0 0
+R_arm_connector:
+  color: 0.866666666666667 0.909803921568627 1 1
+  orientation: 0 0 0
+  position: 0 0 0
+R_foot:
+  color: 0.866666666666667 0.909803921568627 1 1
+  orientation: 0 0 0
+  position: 0 0 0
+R_hip:
+  color: 0.866666666666667 0.909803921568627 1 1
+  orientation: 0 0 0
+  position: 0 0 0
+R_hip_connector:
+  color: 1 1 1 1
+  orientation: 0 0 0
+  position: 0 0 0
+R_leg:
+  color: 0.86667 0.9098 1 1
+  orientation: 0 0 0
+  position: 0 0 0
+R_lower_arm:
+  color: 0.866666666666667 0.909803921568627 1 1
+  orientation: 0 0 0
+  position: 0 0 0
+R_thigh:
+  color: 0.250980392156863 0.250980392156863 0.250980392156863 1
+  orientation: 0 0 0
+  position: 0 0 0
+R_upper_arm:
+  color: 0.250980392156863 0.250980392156863 0.250980392156863 1
+  orientation: 0 0 0
+  position: 0 0 0
+body:
+  color: 0.866666666666667 0.909803921568627 1 1
+  orientation: 0 0 0
+  position: -0.00605 0 0.05121
+cam:
+  color: 0.866666666666667 0.909803921568627 1 1
+  orientation: 0 0 0
+  position: 0 0 0
+neck:
+  color: 0.86667 0.9098 1 1
+  orientation: 0 0 0
+  position: 0 0 0

@@ -1,0 +1,52 @@
+L_ankle:
+  color: 0.9098 0.44314 0.031373 1
+  orientation: 0 -1.5708 1.5708
+  position: 0 0.00 -0.094
+L_foot:
+  color: 0.9098 0.44314 0.031373 1
+  orientation: 3.1416 1.5708 0
+  position: -0.094 0 0.08001
+L_hip:
+  color: 0.9098 0.44314 0.031373 1
+  orientation: 0 -1.5708  0
+  position: 0 0 -0.124
+L_hip_connector:
+  color: 0.25098 0.25098 0.25098 1
+  orientation: -1.5708 0 0
+  position: 0 -0.058 0
+L_leg:
+  color: 0.9098 0.44314 0.031373 1
+  orientation:  3.1416 0 -1.5708
+  position: 0 0.2 0
+L_thigh:
+  color: 0.9098 0.44314 0.031373 1
+  orientation: -1.5708 0 -1.5708
+  position: -0.17 0 -0
+R_ankle:
+  color: 0.9098 0.44314 0.031373 1
+  orientation: 0 0 0
+  position: 0 0 0
+R_foot:
+  color: 0.9098 0.44314 0.031373 1
+  orientation: 0 0 0
+  position: 0 0 0
+R_hip:
+  color: 0.9098 0.44314 0.031373 1
+  orientation: 0 0 0
+  position: 0 0 0
+R_hip_connector:
+  color: 0.25098 0.25098 0.25098 1
+  orientation: 0 0 0
+  position: 0 0 0
+R_leg:
+  color: 0.9098 0.55 0.031373 1
+  orientation: 0 0 0
+  position: 0 0 0
+R_thigh:
+  color: 0.9098 0.44314 0.031373 1
+  orientation: 0 0 0
+  position: 0 0 0
+torso:
+  color: 0.75294 0.75294 0.75294 1
+  orientation: -1.5708 0 1.5708 
+  position: 0 0 -0.067

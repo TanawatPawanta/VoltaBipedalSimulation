@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<robot name="hanuman" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- Include all model properties-->
+  <xacro:property name="description_package" value="Volta_rev4"/>
+  <xacro:include filename="$(find ${description_package})/urdf/properties.xacro"/>
+  <xacro:include filename="$(find ${description_package})/urdf/Volta.xacro" />
+  
+  <link name="world"/>
+  <xacro:humanoid_Volta parent="world"/>
+
+</robot>

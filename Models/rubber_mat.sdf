@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+  <model name="rubber_mat">
+    <link name="rubber_mat_link">
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>1 1 0.2</size>
+          </box>
+        </geometry>
+        <material>
+         <diffuse>0.2 0.2 0.2 0.8</diffuse>
+        </material>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>1 1 0.2</size>
+          </box>
+        </geometry>
+        <drake:proximity_properties>
+          <drake:mesh_resolution_hint>0.04</drake:mesh_resolution_hint>
+          <drake:mu_dynamic>0.8</drake:mu_dynamic>
+          <!-- <drake:mu_static>0.9</drake:mu_static> -->
+          <drake:compliant_hydroelastic/>
+          <drake:hydroelastic_modulus>2.0e4</drake:hydroelastic_modulus>
+          <drake:hunt_crossley_dissipation>50.0</drake:hunt_crossley_dissipation>
+          <!-- <drake:point_stiffness>1000.0</drake:point_stiffness> -->
+        </drake:proximity_properties>
+      </collision>
+    </link>
+  </model>
+</sdf>

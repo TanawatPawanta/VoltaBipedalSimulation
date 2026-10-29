@@ -1,0 +1,606 @@
+<?xml version="1.0" ?>
+<robot name="Volta" xmlns:drake="http://drake.mit.edu">
+  <link name="world"/>
+
+  <link name="torso">
+    <inertial>
+      <origin xyz="0.0001557 -2.0783e-12 0.024021"/>
+      <mass value="2.5"/>
+      <inertia ixx="0.0028215" ixy="-7.1828e-09" ixz="-5.7023e-06" iyy="0.0015625" iyz="-6.0301e-09" izz="0.0025688"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/torso.obj"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.25098 0.25098 0.25098 1"/>
+      </material>
+    </visual>
+    <collision name="torso">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/torso_collision.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="JL_hip_p" type="continuous">
+    <parent link="torso"/>
+    <child link="L_hip_connector"/>
+    <origin rpy="-1.5708 1.5708 0" xyz="0 0.067 0"/>
+    <dynamics damping="0.3" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.14152" upper="3.14152" velocity="0"/>
+  </joint>
+
+  <link name="L_hip_connector">
+    <inertial>
+      <origin xyz="0.00010593 0.0079546 0.052571"/>
+      <mass value="0.36"/>
+      <inertia ixx="0.00011402" ixy="4.9119e-09" ixz="-6.2942e-07" iyy="0.0001669" iyz="-1.2947e-05" izz="7.8252e-05"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/L_hip_connector.obj"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.9098 0.44314 0.031373 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="JL_hip_r" type="continuous">
+    <parent link="L_hip_connector"/>
+    <child link="L_hip"/>
+    <origin rpy="1.5708 0 0" xyz="0 0 0.058"/>
+    <dynamics damping="0.3" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.14152" upper="3.14152" velocity="0"/>
+  </joint>
+
+  <link name="L_hip">
+    <inertial>
+      <origin xyz="0.084531 1.0364e-05 0.0052271"/>
+      <mass value="0.365"/>
+      <inertia ixx="0.00013738" ixy="-8.2548e-09" ixz="1.9227e-05" iyy="0.00017953" iyz="-5.5353e-09" izz="0.00018391"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/L_hip.obj"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.25098 0.25098 0.25098 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="JL_hip_y" type="continuous">
+    <parent link="L_hip"/>
+    <child link="L_thigh"/>
+    <origin rpy="0 1.5708 0" xyz="0.124 0 -0"/>
+    <dynamics damping="0.3" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.14152" upper="3.14152" velocity="0"/>
+  </joint>
+
+  <link name="L_thigh">
+    <inertial>
+      <origin xyz="2.613e-05 0.0057128 0.10482"/>
+      <mass value="0.434"/>
+      <inertia ixx="0.0009106" ixy="-1.0875e-07" ixz="-4.769e-06" iyy="0.00099215" iyz="-5.8959e-05" izz="0.00013331"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 -1.5708" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/L_thigh.obj"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.9098 0.44314 0.031373 1"/>
+      </material>
+    </visual>
+    <collision name="L_thigh">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/L_thigh_collision.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="JL_knee" type="continuous">
+    <parent link="L_thigh"/>
+    <child link="L_leg"/>
+    <origin rpy="1.5708 -1.5708 0" xyz="0 0 0.17"/>
+    <dynamics damping="0.3" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.14152" upper="3.14152" velocity="0"/>
+  </joint>
+
+  <link name="L_leg">
+    <inertial>
+      <origin xyz="0.13604 -3.7092E-05 0.02863"/>
+      <mass value="0.462" />
+      <inertia ixx="0.00028553" ixy="1.2607E-06" ixz="-0.000125" iyy="0.0016659" iyz="-2.8824E-07" izz="0.0017159" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/L_leg.obj"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.25098 0.25098 0.25098 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="JL_ankle_p" type="continuous">
+    <parent link="L_leg"/>
+    <child link="L_ankle"/>
+    <origin rpy="-3.1416 0 -1.5708" xyz="0.2 0 -0.0"/>
+    <dynamics damping="0.3" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.14152" upper="3.14152" velocity="0"/>
+  </joint>
+
+  <link name="L_ankle">
+    <inertial>
+      <origin xyz="0.037457 8.4957e-06 -0.0014016"/>
+      <mass value="0.387"/>
+      <inertia ixx="0.00016902" ixy="-4.7177e-09" ixz="-1.2522e-05" iyy="0.00037861" iyz="-2.4542e-09" izz="0.00037947"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.0061"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/L_ankle.obj"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.9098 0.44314 0.031373 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="JL_ankle_r" type="continuous">
+    <parent link="L_ankle"/>
+    <child link="L_foot"/>
+    <origin rpy="-1.5708 0 -1.5708" xyz="0.094 0 -0.0"/>
+    <dynamics damping="0.3" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.14152" upper="3.14152" velocity="0"/>
+  </joint>
+
+  <link name="L_foot">
+    <inertial>
+      <origin xyz="0.07325 -3.4565E-08 -0.086848"/>
+      <mass value="0.295" />
+      <inertia ixx="0.0015362" ixy="1.4009E-09" ixz="0.00015597" iyy="0.0014868" iyz="-2.5295E-09" izz="0.00039154" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/L_foot.obj"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.9098 0.44314 0.031373 1"/>
+      </material>
+    </visual>
+    <collision name="L_foot">
+      <origin rpy="0 0 0" xyz="-0.003 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/L_foot_collision.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="L_foot_contact"/>
+  <joint name="L_foot_contact_offset" type="fixed">
+    <parent link="L_foot"/>
+    <child link="L_foot_contact"/>
+    <origin rpy="0 1.5705 3.1416" xyz="0.112 0.00 -0.094"/>
+  </joint>
+
+  <link name="L_foot_contact_FL">
+    <collision name="L_foot_contact_FL">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/Foot_contact_plate.obj"/>
+      </geometry>
+      <drake:proximity_properties>
+        <drake:compliant_hydroelastic/>
+        <drake:hydroelastic_modulus value="1e6"/>
+        <drake:mesh_resolution_hint value="0.01"/>
+        <drake:hunt_crossley_dissipation value="1.5"/>
+        <drake:mu_static value="1.0"/>
+        <drake:mu_dynamic value="0.8"/>
+      </drake:proximity_properties>
+    </collision>
+  </link>
+
+  <link name="L_foot_contact_FR">
+    <collision name="L_foot_contact_FR">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/Foot_contact_plate.obj"/>
+      </geometry>
+      <drake:proximity_properties>
+        <drake:compliant_hydroelastic/>
+        <drake:hydroelastic_modulus value="1e6"/>
+        <drake:mesh_resolution_hint value="0.01"/>
+        <drake:hunt_crossley_dissipation value="1.5"/>
+        <drake:mu_static value="1.0"/>
+        <drake:mu_dynamic value="0.8"/>
+      </drake:proximity_properties>
+    </collision>
+  </link>
+
+  <link name="L_foot_contact_RL">
+    <collision name="L_foot_contact_RL">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/Foot_contact_plate.obj"/>
+      </geometry>
+      <drake:proximity_properties>
+        <drake:compliant_hydroelastic/>
+        <drake:hydroelastic_modulus value="1e6"/>
+        <drake:mesh_resolution_hint value="0.01"/>
+        <drake:hunt_crossley_dissipation value="1.5"/>
+        <drake:mu_static value="1.0"/>
+        <drake:mu_dynamic value="0.8"/>
+      </drake:proximity_properties>
+    </collision>
+  </link>
+
+  <link name="L_foot_contact_RR">
+    <collision name="L_foot_contact_RR">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/Foot_contact_plate.obj"/>
+      </geometry>
+      <drake:proximity_properties>
+        <drake:compliant_hydroelastic/>
+        <drake:hydroelastic_modulus value="1e6"/>
+        <drake:mesh_resolution_hint value="0.01"/>
+        <drake:hunt_crossley_dissipation value="1.5"/>
+        <drake:mu_static value="1.0"/>
+        <drake:mu_dynamic value="0.8"/>
+      </drake:proximity_properties>
+    </collision>
+  </link>
+
+  <joint name="L_foot_contact_FL_offset" type="fixed">
+    <parent link="L_foot_contact"/>
+    <child link="L_foot_contact_FL"/>
+    <origin rpy="0 0 0" xyz="0.08458 0.03386 0.0"/>
+  </joint>
+  <joint name="L_foot_contact_FR_offset" type="fixed">
+    <parent link="L_foot_contact"/>
+    <child link="L_foot_contact_FR"/>
+    <origin rpy="0 0 0" xyz="0.08458 -0.03386 0.0"/>
+  </joint>
+  <joint name="L_foot_contact_RL_offset" type="fixed">
+    <parent link="L_foot_contact"/>
+    <child link="L_foot_contact_RL"/>
+    <origin rpy="0 0 0" xyz="-0.09258 0.03386 0.0"/>
+  </joint>
+  <joint name="L_foot_contact_RR_offset" type="fixed">
+    <parent link="L_foot_contact"/>
+    <child link="L_foot_contact_RR"/>
+    <origin rpy="0 0 0" xyz="-0.09258 -0.03386 0.0"/>
+  </joint>
+
+  <joint name="JR_hip_p" type="continuous">
+    <parent link="torso"/>
+    <child link="R_hip_connector"/>
+    <origin rpy="1.5708 1.5708 0" xyz="0 -0.067001 0"/>
+    <dynamics damping="0.3" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.14152" upper="3.14152" velocity="0"/>
+  </joint>
+
+  <link name="R_hip_connector">
+    <inertial>
+      <origin xyz="0.00010202 -0.0073451 0.052593" rpy="0 0 0" />
+      <mass value="0.372" />
+      <inertia ixx="0.00011402" ixy="-3.2815E-09" ixz="-6.3402E-07" iyy="0.0001669" iyz="1.2938E-05" izz="7.825E-05" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/R_hip_connector.obj"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.9098 0.44314 0.031373 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="JR_hip_r" type="continuous">
+    <parent link="R_hip_connector"/>
+    <child link="R_hip"/>
+    <origin rpy="-1.5708 0 0" xyz="0 0 0.058"/>
+    <dynamics damping="0.3" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.14152" upper="3.14152" velocity="0"/>
+  </joint>
+
+  <link name="R_hip">
+    <inertial>
+      <origin xyz="0.084531 1.0364e-05 0.0052271"/>
+      <mass value="0.365"/>
+      <inertia ixx="0.00013738" ixy="-8.2548e-09" ixz="1.9227e-05" iyy="0.00017953" iyz="-5.5353e-09" izz="0.00018391"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/R_hip.obj"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.25098 0.25098 0.25098 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="JR_hip_y" type="continuous">
+    <parent link="R_hip"/>
+    <child link="R_thigh"/>
+    <origin rpy="0 1.5708 0" xyz="0.124 0 -0"/>
+    <dynamics damping="0.3" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.14152" upper="3.14152" velocity="0"/>
+  </joint>
+
+  <link name="R_thigh">
+    <inertial>
+      <origin xyz="2.6122e-05 -0.0057129 0.10483"/>
+      <mass value="0.434"/>
+      <inertia ixx="0.0009106" ixy="1.0872e-07" ixz="-4.7736e-06" iyy="0.00099215" iyz="5.895e-05" izz="0.00013331"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 -1.5708" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/R_thigh.obj"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.9098 0.44314 0.031373 1"/>
+      </material>
+    </visual>
+    <collision name="R_thigh">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/R_thigh_collision.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="JR_knee" type="continuous">
+    <parent link="R_thigh"/>
+    <child link="R_leg"/>
+    <origin rpy="-1.5708 -1.5708 0" xyz="0 0 0.17"/>
+    <dynamics damping="0.3" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.14152" upper="3.14152" velocity="0"/>
+  </joint>
+
+  <link name="R_leg">
+    <inertial>
+      <origin xyz="0.13604 -3.7092E-05 0.02863" rpy="0 0 0" />
+      <mass value="0.462" />
+      <inertia ixx="0.00028553" ixy="1.2607E-06" ixz="-0.000125" iyy="0.0016659" iyz="-2.8824E-07" izz="0.0017159" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/R_leg.obj"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.25098 0.25098 0.25098 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="JR_ankle_p" type="continuous">
+    <parent link="R_leg"/>
+    <child link="R_ankle"/>
+    <origin rpy="-3.1416 0 1.5708" xyz="0.2 0 -0.0"/>
+    <dynamics damping="0.3" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.14152" upper="3.14152" velocity="0"/>
+  </joint>
+
+  <link name="R_ankle">
+    <inertial>
+      <origin xyz="0.037457 8.4957e-06 -0.0014016"/>
+      <mass value="0.387"/>
+      <inertia ixx="0.00016902" ixy="-4.7177e-09" ixz="-1.2522e-05" iyy="0.00037861" iyz="-2.4542e-09" izz="0.00037947"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.0061"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/R_ankle.obj"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.9098 0.44314 0.031373 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="JR_ankle_r" type="continuous">
+    <parent link="R_ankle"/>
+    <child link="R_foot"/>
+    <origin rpy="1.5708 0 1.5708" xyz="0.094 0 -0.0"/>
+    <dynamics damping="0.3" />
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.14152" upper="3.14152" velocity="0"/>
+  </joint>
+
+  <link name="R_foot">
+    <inertial>
+      <origin xyz="0.07325 -3.4565E-08 -0.086848" rpy="0 0 0" />
+      <mass value="0.295" />
+      <inertia ixx="0.0015362" ixy="1.4009E-09" ixz="0.00015597" iyy="0.0014868" iyz="-2.5295E-09" izz="0.00039154" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/R_foot.obj"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.9098 0.44314 0.031373 1"/>
+      </material>
+    </visual>
+    <collision name="R_foot">
+      <origin rpy="0 0 0" xyz="-0.003 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/R_foot_collision.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="R_foot_contact"/>
+  <joint name="R_foot_contact_offset" type="fixed">
+    <parent link="R_foot"/>
+    <child link="R_foot_contact"/>
+    <origin rpy="0 1.5705 3.1416" xyz="0.112 0.00 -0.094"/>
+  </joint>
+
+  <link name="R_foot_contact_FL">
+    <collision name="R_foot_contact_FL">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/Foot_contact_plate.obj"/>
+      </geometry>
+      <drake:proximity_properties>
+        <drake:compliant_hydroelastic/>
+        <drake:hydroelastic_modulus value="1e6"/>
+        <drake:mesh_resolution_hint value="0.01"/>
+        <drake:hunt_crossley_dissipation value="1.5"/>
+        <drake:mu_static value="1.0"/>
+        <drake:mu_dynamic value="0.8"/>
+      </drake:proximity_properties>
+    </collision>
+  </link>
+
+  <link name="R_foot_contact_FR">
+    <collision name="R_foot_contact_FR">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/Foot_contact_plate.obj"/>
+      </geometry>
+      <drake:proximity_properties>
+        <drake:compliant_hydroelastic/>
+        <drake:hydroelastic_modulus value="1e6"/>
+        <drake:mesh_resolution_hint value="0.01"/>
+        <drake:hunt_crossley_dissipation value="1.5"/>
+        <drake:mu_static value="1.0"/>
+        <drake:mu_dynamic value="0.8"/>
+      </drake:proximity_properties>
+    </collision>
+  </link>
+
+  <link name="R_foot_contact_RL">
+    <collision name="R_foot_contact_RL">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/Foot_contact_plate.obj"/>
+      </geometry>
+      <drake:proximity_properties>
+        <drake:compliant_hydroelastic/>
+        <drake:hydroelastic_modulus value="1e6"/>
+        <drake:mesh_resolution_hint value="0.01"/>
+        <drake:hunt_crossley_dissipation value="1.5"/>
+        <drake:mu_static value="1.0"/>
+        <drake:mu_dynamic value="0.8"/>
+      </drake:proximity_properties>
+    </collision>
+  </link>
+
+  <link name="R_foot_contact_RR">
+    <collision name="R_foot_contact_RR">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="file:///home/tanawatp/Documents/Thesis_simulation/Models/Volta_rev5/meshes/Foot_contact_plate.obj"/>
+      </geometry>
+      <drake:proximity_properties>
+        <drake:compliant_hydroelastic/>
+        <drake:hydroelastic_modulus value="1e6"/>
+        <drake:mesh_resolution_hint value="0.01"/>
+        <drake:hunt_crossley_dissipation value="1.5"/>
+        <drake:mu_static value="1.0"/>
+        <drake:mu_dynamic value="0.8"/>
+      </drake:proximity_properties>
+    </collision>
+  </link>
+
+  <joint name="R_foot_contact_FL_offset" type="fixed">
+    <parent link="R_foot_contact"/>
+    <child link="R_foot_contact_FL"/>
+    <origin rpy="0 0 0" xyz="0.08458 0.03386 0.0"/>
+  </joint>
+  <joint name="R_foot_contact_FR_offset" type="fixed">
+    <parent link="R_foot_contact"/>
+    <child link="R_foot_contact_FR"/>
+    <origin rpy="0 0 0" xyz="0.08458 -0.03386 0.0"/>
+  </joint>
+  <joint name="R_foot_contact_RL_offset" type="fixed">
+    <parent link="R_foot_contact"/>
+    <child link="R_foot_contact_RL"/>
+    <origin rpy="0 0 0" xyz="-0.09258 0.03386 0.0"/>
+  </joint>
+  <joint name="R_foot_contact_RR_offset" type="fixed">
+    <parent link="R_foot_contact"/>
+    <child link="R_foot_contact_RR"/>
+    <origin rpy="0 0 0" xyz="-0.09258 -0.03386 0.0"/>
+  </joint>
+
+  <transmission name="trans_JL_hip_p" type="SimpleTransmission">
+    <actuator name="JL_hip_p_motor"><mechanicalReduction>1.0</mechanicalReduction></actuator>
+    <joint name="JL_hip_p"/>
+  </transmission>
+  <transmission name="trans_JL_hip_r" type="SimpleTransmission">
+    <actuator name="JL_hip_r_motor"><mechanicalReduction>1.0</mechanicalReduction></actuator>
+    <joint name="JL_hip_r"/>
+  </transmission>
+  <transmission name="trans_JL_hip_y" type="SimpleTransmission">
+    <actuator name="JL_hip_y_motor"><mechanicalReduction>1.0</mechanicalReduction></actuator>
+    <joint name="JL_hip_y"/>
+  </transmission>
+  <transmission name="trans_JL_knee" type="SimpleTransmission">
+    <actuator name="JL_knee_motor"><mechanicalReduction>1.0</mechanicalReduction></actuator>
+    <joint name="JL_knee"/>
+  </transmission>
+  <transmission name="trans_JL_ankle_p" type="SimpleTransmission">
+    <actuator name="JL_ankle_p_motor"><mechanicalReduction>1.0</mechanicalReduction></actuator>
+    <joint name="JL_ankle_p"/>
+  </transmission>
+  <transmission name="trans_JL_ankle_r" type="SimpleTransmission">
+    <actuator name="JL_ankle_r_motor"><mechanicalReduction>1.0</mechanicalReduction></actuator>
+    <joint name="JL_ankle_r"/>
+  </transmission>
+
+  <transmission name="trans_JR_hip_p" type="SimpleTransmission">
+    <actuator name="JR_hip_p_motor"><mechanicalReduction>1.0</mechanicalReduction></actuator>
+    <joint name="JR_hip_p"/>
+  </transmission>
+  <transmission name="trans_JR_hip_r" type="SimpleTransmission">
+    <actuator name="JR_hip_r_motor"><mechanicalReduction>1.0</mechanicalReduction></actuator>
+    <joint name="JR_hip_r"/>
+  </transmission>
+  <transmission name="trans_JR_hip_y" type="SimpleTransmission">
+    <actuator name="JR_hip_y_motor"><mechanicalReduction>1.0</mechanicalReduction></actuator>
+    <joint name="JR_hip_y"/>
+  </transmission>
+  <transmission name="trans_JR_knee" type="SimpleTransmission">
+    <actuator name="JR_knee_motor"><mechanicalReduction>1.0</mechanicalReduction></actuator>
+    <joint name="JR_knee"/>
+  </transmission>
+  <transmission name="trans_JR_ankle_p" type="SimpleTransmission">
+    <actuator name="JR_ankle_p_motor"><mechanicalReduction>1.0</mechanicalReduction></actuator>
+    <joint name="JR_ankle_p"/>
+  </transmission>
+  <transmission name="trans_JR_ankle_r" type="SimpleTransmission">
+    <actuator name="JR_ankle_r_motor"><mechanicalReduction>1.0</mechanicalReduction></actuator>
+    <joint name="JR_ankle_r"/>
+  </transmission>
+
+</robot>

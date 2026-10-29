@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot name="hanuman" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- Include all model properties-->
+  <xacro:property name="description_package" value="hanuman04"/>
+  <xacro:include filename="$(find ${description_package})/urdf/properties.xacro"/>
+  <xacro:include filename="$(find ${description_package})/urdf/hanuman.xacro" />
+  <xacro:include filename="$(find ${description_package})/urdf/hanuman.ros2_control.xacro" />
+  
+  <link name="world"/>
+  <xacro:humanoid parent="world"/>
+
+  <!-- <xacro:humanoid_ros2_control name="humanoid_ros2_control"/> -->
+</robot>

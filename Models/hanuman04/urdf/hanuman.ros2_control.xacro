@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="joint_interface" params="joint_name">
+      <joint name="${joint_name}">
+        <param name="id">${DYNAMIXEL[joint_name]['dynamixel_ID']}</param>
+        <command_interface name="position"/>
+        <command_interface name="velocity"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+  </xacro:macro>
+
+  <xacro:macro name="joints_left_leg" params="">
+      <xacro:joint_interface joint_name="JL_hip_y"/>
+      <xacro:joint_interface joint_name="JL_hip_r"/>
+      <xacro:joint_interface joint_name="JL_hip_p"/>
+      <xacro:joint_interface joint_name="JL_knee"/>
+      <xacro:joint_interface joint_name="JL_ankle_p"/>
+      <xacro:joint_interface joint_name="JL_ankle_r"/>
+  </xacro:macro>
+
+  <xacro:macro name="joints_right_leg" params="">
+      <xacro:joint_interface joint_name="JR_hip_y"/>
+      <xacro:joint_interface joint_name="JR_hip_r"/>
+      <xacro:joint_interface joint_name="JR_hip_p"/>
+      <xacro:joint_interface joint_name="JR_knee"/>
+      <xacro:joint_interface joint_name="JR_ankle_p"/>
+      <xacro:joint_interface joint_name="JR_ankle_r"/>
+  </xacro:macro>
+
+  <xacro:macro name="joints_left_arm" params="">
+      <xacro:joint_interface joint_name="JL_shoulder_p"/>
+      <xacro:joint_interface joint_name="JL_shoulder_r"/>
+      <xacro:joint_interface joint_name="JL_elbow"/>
+  </xacro:macro>
+
+  <xacro:macro name="joints_right_arm" params="">
+      <xacro:joint_interface joint_name="JR_shoulder_p"/>
+      <xacro:joint_interface joint_name="JR_shoulder_r"/>
+      <xacro:joint_interface joint_name="JR_elbow"/>
+  </xacro:macro>
+
+  <xacro:macro name="joints_head" params="">
+      <xacro:joint_interface joint_name="J_neck"/>
+      <xacro:joint_interface joint_name="J_cam"/>
+  </xacro:macro>
+
+  <xacro:macro name="humanoid_ros2_control" params="name">
+    <ros2_control name="${name}" type="system">
+      <hardware>
+        <plugin>dynamixel_hardware/DynamixelHardware</plugin>
+        <param name="usb_port">${DYNAMIXEL['dynamixel']['usb_port']}</param>
+        <param name="baud_rate">${DYNAMIXEL['dynamixel']['baud_rate']}</param>
+      </hardware>
+
+      <!-- left leg -->
+      <xacro:joints_left_leg/>
+      <!-- right leg -->
+      <xacro:joints_right_leg/>
+      <!-- left arm -->
+      <xacro:joints_left_arm/>
+      <!-- right arm -->
+      <xacro:joints_right_arm/>
+      <!-- head -->
+      <!-- <xacro:joints_head/> -->
+
+    </ros2_control>
+
+  </xacro:macro>
+
+</robot>
