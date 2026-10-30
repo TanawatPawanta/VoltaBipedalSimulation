@@ -2,6 +2,29 @@
 
 Walking simulation and whole-body control for the Volta biped, built on [Drake](https://drake.mit.edu/).
 
+<p align="center">
+  <img src="Result/Media/VoltaFront.png" alt="VOLTA front view" width="30%">
+  <img src="Result/Media/VoltaSide.png" alt="VOLTA side view" width="30%">
+  <img src="Result/Media/VoltaIsometric.png" alt="VOLTA isometric view" width="30%">
+</p>
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <img src="Result/Media/Combined_walk_in_sim.gif" alt="Combined walk" width="100%"><br>
+      IS-MPC + WBC omnidirectional walk on a rigid floor (sim, exp <code>1f</code>)
+    </td>
+    <td align="center" width="33%">
+      <img src="Result/Media/MixedComplianceFloor.gif" alt="Mixed-compliance floor" width="100%"><br>
+      Walk over tiles of different stiffness and damping (sim, exp <code>4a</code>)
+    </td>
+    <td align="center" width="33%">
+      <img src="Result/Media/Hardware/CoM_tracking_with_plot.gif" alt="CoM tracking on hardware" width="100%"><br>
+      WBC CoM tracking on the real robot, with the live CoM plot
+    </td>
+  </tr>
+</table>
+
 ## Overview
 
 A torque-controlled locomotion framework for the VOLTA humanoid that couples an IS-MPC gait
@@ -22,32 +45,45 @@ compliant point contact:
 
 ## Robot
 
-![VOLTA joint configuration](Result/Media/JointConfigulation.png)
+<table>
+  <tr>
+    <td align="center"><img src="Result/Media/JointConfigulation.png" alt="VOLTA joint configuration" height="420"><br>Joint configuration</td>
+    <td align="center"><img src="Result/Media/voltaLinkLenght.png" alt="VOLTA link lengths" height="420"><br>Link lengths [m]</td>
+  </tr>
+</table>
 
-VOLTA is a custom-built biped with 12 torque-controlled joints, 6 per leg:
+VOLTA is a custom-built biped with 12 torque-controlled joints, 6 per leg, listed from the torso down:
 
 | Joint | Axis |
 |---|---|
-| `J_hip_y` | hip yaw |
-| `J_hip_r` | hip roll |
 | `J_hip_p` | hip pitch |
+| `J_hip_r` | hip roll |
+| `J_hip_y` | hip yaw |
 | `J_knee` | knee pitch |
 | `J_ankle_p` | ankle pitch |
 | `J_ankle_r` | ankle roll |
 
 In the URDF the joints are prefixed `JL_` / `JR_` for the left and right leg.
 
+| Link | Length [m] |
+|---|---|
+| Torso centre to hip (lateral) | 0.125  |
+| Hip roll axis to hip yaw joint | 0.124 |
+| Thigh (hip yaw to knee) | 0.17 |
+| Shank (knee to ankle) | 0.2 |
+| Ankle to sole | 0.112 |
+
 | Property (simulation model, rev5) | Value |
 |---|---|
-| Total mass | 7.12 kg |
+| Total mass | ~7 kg |
+| Total height | 0.73 m |
 | Degrees of freedom | 6 (floating base) + 12 (joints) |
 | Joint torque | 12 Nm limit (`joint_torque_limit` in `ExperimentConfig`), 4 Nm rated |
 | Foot contact | 4 contact points per foot (corners of the sole) |
 | LIP CoM height | 0.35 m |
 | ZMP support box | 0.08 m square (`foot_size`) |
 
-Models in `Models/`: Volta rev5 (used by the experiments), Volta rev4, and `hanuman04` (an older
-ROS 2 package).
+Models in `Models/`: Volta rev5 (used by the experiments).
 
 ## Repository layout
 
@@ -125,9 +161,22 @@ Defaults: floor stiffness 5e6 N/m, dissipation 50 s/m, joint damping 0.3, walkin
 
 ## Results
 
-GIFs are in `Result/Media/` (downscaled to 480 px at 10 fps; the hardware clips are 400 px at 8 fps).
-
 ### Simulation
+
+**How to read the simulation clips**
+
+| Marker | Meaning |
+|---|---|
+| Red / blue boxes | planned footsteps for the left / right foot (footstep plan) |
+| Red / blue dotted arcs | left / right sole trajectory |
+| Dark purple dotted line | CoM position |
+| Magenta dotted line | CoM projected on the floor |
+| Red line (exp `0a`) | external push force applied to the torso |
+| Coloured floor tiles (exp `4a`, `4b`) | uneven floor patches (−5 to +8 mm in height); in `4a` each colour also has its own contact stiffness / damping, in `4b` all are stiff |
+
+**CoM stabilization**: Standing on a rigid floor while an external push of [12, 10, 15] N (red line) is applied to the torso at 1 s. The WBC brings the CoM back to its standing position (exp `0a`).
+
+![CoM stabilization in simulation](Result/Media/CoM_stabilization_in_sim.gif)
 
 **Combined walk**: Omnidirectional walk combining forward, lateral and turning commands on a rigid floor (exp `1f`).
 
@@ -151,15 +200,26 @@ GIFs are in `Result/Media/` (downscaled to 480 px at 10 fps; the hardware clips 
 
 ### Hardware
 
-The hardware tests so far run only the whole-body controller (WBC) on the VOLTA prototype, without the gait planner. The clips are cropped to the camera view.
+The hardware tests so far run only the whole-body controller (WBC) on the VOLTA prototype, without the gait planner. Each GIF shows the camera view (left) next to the live CoM position plot from the same recording (right): X, Y and Z in metres, actual vs desired, so the plot stays in sync with the robot. The clips play at real speed at 5 fps.
 
-**CoM stabilization**: The robot is told to hold its current pose while it is pushed and pulled by hand. It corrects the pose error and returns to the original pose.
+**How to read the hardware plots** (right half of each GIF)
 
-![CoM stabilization](Result/Media/Hardware/phyCoMStabilization.gif)
+| Line | Meaning |
+|---|---|
+| Red / green / blue | actual CoM position in X / Y / Z [m] |
+| Purple | desired CoM position |
 
-**CoM tracking**: The robot is given a target CoM pose and follows a CoM trajectory generated with a cubic polynomial.
+**CoM stabilization**: The robot is told to hold its current pose while it is pushed and pulled by hand. It corrects the pose error and returns to the original pose. (Trimmed to 15–42 s of the recording.)
 
-![CoM tracking](Result/Media/Hardware/phyCoMTracking2.gif)
+![CoM stabilization](Result/Media/Hardware/CoM_stabilization_with_plot.gif)
+
+Each push moves the CoM up to about 3.5 cm in X and 4 cm in Y away from the desired position, and the robot brings it back.
+
+**CoM tracking**: The robot is given a target CoM pose and follows a CoM trajectory generated with a cubic polynomial. (Trimmed to 7–35 s of the recording.)
+
+![CoM tracking](Result/Media/Hardware/CoM_tracking_with_plot.gif)
+
+The desired Y follows the cubic trajectory out to +0.08 m and back to -0.08 m. The actual CoM follows the move out closely but stops short on the return.
 
 ## Further documentation
 
